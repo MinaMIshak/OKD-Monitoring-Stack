@@ -1,3 +1,50 @@
 {
-  "title": "PVC Monitoring Dashboard Placeholder"
+  "id": null,
+  "title": "PVC Monitoring Dashboard",
+  "tags": ["pvc", "storage", "kubernetes"],
+  "timezone": "browser",
+  "schemaVersion": 30,
+  "version": 1,
+  "refresh": "10s",
+  "panels": [
+    {
+      "type": "graph",
+      "title": "PVC Usage (Used vs Total)",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "(kubelet_volume_stats_used_bytes / kubelet_volume_stats_capacity_bytes) * 100",
+          "legendFormat": "{{persistentvolumeclaim}} - Used %",
+          "interval": ""
+        }
+      ],
+      "gridPos": { "x": 0, "y": 0, "w": 24, "h": 8 }
+    },
+    {
+      "type": "graph",
+      "title": "PVC Total Capacity (Bytes)",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "kubelet_volume_stats_capacity_bytes",
+          "legendFormat": "{{persistentvolumeclaim}}",
+          "interval": ""
+        }
+      ],
+      "gridPos": { "x": 0, "y": 8, "w": 12, "h": 8 }
+    },
+    {
+      "type": "graph",
+      "title": "PVC Used (Bytes)",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "kubelet_volume_stats_used_bytes",
+          "legendFormat": "{{persistentvolumeclaim}}",
+          "interval": ""
+        }
+      ],
+      "gridPos": { "x": 12, "y": 8, "w": 12, "h": 8 }
+    }
+  ]
 }

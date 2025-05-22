@@ -1,1 +1,15 @@
 # Prometheus Service YAML placeholder
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus-operated
+  labels:
+    prometheus: k8s
+spec:
+  type: ClusterIP
+  ports:
+  - name: web
+    port: 9090
+    targetPort: web
+  selector:
+    prometheus: k8s
